@@ -1,0 +1,12 @@
+extends templates/basic.jade
+include mixins/bbb.jade
+
+block title
+	title 
+block content
+	//- add the campain monitoring link suffix as the argument in the addBBBheader-600 function (don't include the question mark)
+	//- only leave this function in if you're doing a 600 wide BBB email, otherwise delete or comment it out.
+	+addBBBheader-600('')
+		| email title. 
+		+a('')(style="color:#273691;") Shop now!
+	+build

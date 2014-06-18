@@ -1,0 +1,26 @@
+include ../mixins/buildEmail
+
+| <!-- build:template 
+| <%= doctype %>
+| /build -->	
+| 
+html(xmlns="http://www.w3.org/1999/xhtml")
+	head
+		meta(http-equiv="Content-Type", content="text/html; charset=iso-8859-1")
+		block title
+		style(type="text/css").
+			body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}	
+			a img {border:none;}
+			img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:block; border:0;}
+			p {margin:0;}
+			table td {border-collapse: collapse;}
+
+			.ExternalClass {width:100%;}
+			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+			#outlook a {padding:0;}
+	body
+		+table(style="margin:0; padding:0; width:100% !important; line-height: 100% !important; position:absolute;", align="center")
+			+tr(align="center")
+				td
+					+table(align="center", width= maxWidth)
+						block content
