@@ -1,6 +1,8 @@
 #AutoEmail
 
 CHANGELONG:
+* No longer have to space out the two text elements at the top of BBB emails
+
 * The only command now is 'grunt'
 * For lack of a better place to do this (and time crunch): if you're doing a not 600x BBB email, then you need to temporarily move the commonImgs folder out of the project (or rename it). I haven't had time to fix this... You'll then need to copy the spacer image over by hand.
 

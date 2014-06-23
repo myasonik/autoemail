@@ -1,11 +1,10 @@
 mixin addBBBheader-600(campaignLink)
 	+newRow
-		// table right above should have width="600" added
-		td(align="left", valign="bottom")
+		td(align="left", valign="bottom", width="300")
 			p(style="font-size:10px; font-family:Arial, Helvetica, sans-serif; color:#273691;")
 				if block
 					block
-		td(align="right", valign="bottom")
+		td(align="right", valign="bottom", width="300")
 			p(style="font-size:10px; font-family:Arial, Helvetica, sans-serif; color:#273691;")
 				+a('http://view.ed4.net/v/_ECLIENTID__/_ECELLID__/_EOLISTID__/_EOCID__/MAILACTION=_MAILACTION__&FORMAT=H?' + campaignLink)(style="color:#273691;") View as web page
 	+newRow
