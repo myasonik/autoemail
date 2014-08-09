@@ -1,0 +1,13 @@
+extends templates/master.jade
+
+block body
+	form
+		label
+			p Choose an email template
+			select
+				option None
+				option Bed Bath
+		label
+			input(id='getASF', type='file')
+		label
+			input(id='getPSDData', type='file', webkitdirectory)
