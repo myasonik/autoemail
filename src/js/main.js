@@ -1,7 +1,6 @@
 var fs = require('fs'),
 	path = require('path'),
-	cheerio = require('cheerio'),
-	buildEmail = require('buildEmail.js'),
+	buildEmail = require('./js/buildEmail.js'),
 	getASF = document.querySelector('#getASF'),
 	getPSDData = document.querySelector('#getPSDData'),
 	makeEmail = document.querySelector('#makeEmail'),
@@ -9,14 +8,12 @@ var fs = require('fs'),
 	maxWidth = 0,
 	sliceData, psData, psImgs = [];
 
-var getFileExtension = function getFileExtension(filename) { return filename.split('.').pop(); };
-
 getASF.addEventListener('change', function() {
 	'use strict';
 	var excel, extension, sheets, asf;
 
 	excel = this.value;
-	extension = getFileExtension(excel);
+	extension = path.extname(excel);
 
 	if (extension === 'xls') excel = require('xlsjs').readFile(excel);
 	else if (extension === 'xlsx') excel = require('xlsx').readFile(excel);
@@ -33,16 +30,16 @@ getASF.addEventListener('change', function() {
 getPSDData.addEventListener('change', function() {
 	'use strict';
 
-	var path = this.files[0].path;
+	var dirname = this.files[0].path;
 
 	fs.readdir(this.value, function(err, files) {
 		files.forEach(function(el, i) {
 			var extension; 
 			
-			if (getFileExtension(el) === 'html') psData = cheerio.load(fs.readFileSync(path + '\\' + el, 'utf8'));
+			if (path.extname(el) === 'html') psData = fs.readFileSync(path.join(dirname, el), 'utf8');
 			else {
-				extension = getFileExtension(el);
-				if (extension === 'jpg' || extension === 'gif') psImgs.push(path + '\\' + el);
+				extension = path.extname(el);
+				if (extension === 'jpg' || extension === 'gif') psImgs.push(path.join(dirname, el));
 				else  alert('File ' + el + ' not supported');
 			}
 		});
@@ -50,8 +47,6 @@ getPSDData.addEventListener('change', function() {
 });
 
 makeEmail.addEventListener('click', function() {
-	if (sliceData && psData && psImgs.length > 0) {
-		buildEmail();
-		// buildPlainText();
-	} else alert('Please add an ASF and exported PS data');
+	if (sliceData && psData && psImgs.length > 0) buildEmail(sliceData, psData, psImgs);
+	else alert('Please add an ASF and exported PS data');
 });

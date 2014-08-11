@@ -62,3 +62,5 @@ var buildEmail = function buildEmail() {
 	docFrag.appendChild(email);
 	document.body.appendChild(docFrag);
 };
+
+module.exports = buildEmail;
