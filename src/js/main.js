@@ -5,7 +5,6 @@ var fs = require('fs'),
 	getASF = document.querySelector('#getASF'),
 	getPSDData = document.querySelector('#getPSDData'),
 	makeEmail = document.querySelector('#makeEmail'),
-	expectedWidth = document.querySelector('#getEmailWidth').value,
 	maxWidth = 0,
 	sliceData, psData, psImgs = [];
 
@@ -52,11 +51,13 @@ getPSDData.addEventListener('change', function() {
 });
 
 makeEmail.addEventListener('click', function() {
+	'use strict';
+	
 	var email, iFrame;
 
 	// if (sliceData && psData && psImgs.length > 0) {
 		rimraf.sync('email');
-		email = buildEmail(sliceData, psData, psImgs);
+		email = buildEmail(sliceData, psData, psImgs, document.querySelector('#getEmailWidth').value);
 		fs.mkdirSync('email');
 		fs.mkdirSync(path.join('email', 'imgs'));
 		psImgs.forEach(function(el, i) {

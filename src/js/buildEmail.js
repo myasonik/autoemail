@@ -1,11 +1,13 @@
-var buildEmail = function buildEmail(sliceData, psData, psImgs) {
+var buildEmail = function buildEmail(sliceData, psData, psImgs, expectedWidth) {
 	'use strict';
 
 	var cheerio = require('cheerio'),
 		jade = require('jade'),
+		path = require('path'),
 		$ = cheerio.load(psData),
 		goodRows = [],
-		maxWidth = 0;
+		maxWidth = 0,
+		jadeLocals = {};
 
 	var spacerImg = function spacerImg($el) { return $el.attr('src') === 'spacer.gif'; };
 
@@ -21,8 +23,6 @@ var buildEmail = function buildEmail(sliceData, psData, psImgs) {
 
 		return isOnlySpacers;
 	};
-
-	// fs.writeFile(__dirname + '\\', jade stuff)
 
 	/**
 	 * will get maxWidth and remove rows of only photoshop's junk spacer images
@@ -46,24 +46,24 @@ var buildEmail = function buildEmail(sliceData, psData, psImgs) {
 		}
 	});
 
-	// if (expectedWidth && expectedWidth !== maxWidth) alert('Expected email width did not match slices.');
+	if (expectedWidth && expectedWidth !== maxWidth) alert('Expected email width did not match slices.');
 
-	$(goodRows).each(function(i, thisRow) {
-		var $thisRow = $(thisRow);
+	// $(goodRows).each(function(i, thisRow) {
+	// 	var $thisRow = $(thisRow);
 
-		$thisRow.children('td').each(function(i, thisCell) {
-			var $thisCell = $(thisCell),
-				$thisImg = $thisCell.children('img');
+	// 	$thisRow.children('td').each(function(i, thisCell) {
+	// 		var $thisCell = $(thisCell),
+	// 			$thisImg = $thisCell.children('img');
 
-			if ($thisImg && !spacerImg($thisImg)) {
+	// 		if ($thisImg && !spacerImg($thisImg)) {
 
-			}
-		});
-	});
+	// 		}
+	// 	});
+	// });
 
+	jadeLocals.width = maxWidth;
 
-	// return jade.renderFile(path.normalize('./js/emailTemplates/index.jade'));
-	return 'hey';
+	return jade.renderFile(path.normalize('../emailTemplates/index.jade'), jadeLocals);
 };
 
 module.exports = buildEmail;

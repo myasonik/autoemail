@@ -74,7 +74,8 @@ gulp.task('imgs', function() {
 });
 
 gulp.task('copy', function() {
-
+	gulp.src('src/emailTemplates/**/*.jade')
+		.pipe(gulp.dest('app/emailTemplates'));
 });
 
 gulp.task('clean', del.bind(null, ['app/**/*', '!.*']));
