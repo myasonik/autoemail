@@ -5,7 +5,6 @@ var del				= require('del'),
 	should			= require('gulp-if'),
 	notify			= require('gulp-notify'),
 	rename			= require('gulp-rename'),
-	concat			= require('gulp-concat'),
 	plumber			= require('gulp-plumber'),
 	// (S)CSS STUFF
 	sass			= require('gulp-ruby-sass'),
@@ -49,7 +48,6 @@ gulp.task('lint-js', function() {
 gulp.task('js', ['lint-js'], function() {
 	gulp.src('src/js/**/*.js')
 		.pipe(plumber({ errorHandler: notify.onError('<%= error.message %>') }))
-		.pipe(concat('main.js'))
 		.pipe(should(production, uglify()))
 		.pipe(should(production, rename({ suffix: '.min' })))
 		.pipe(gulp.dest('app/js/'));

@@ -8,6 +8,12 @@ block body
 				option None
 				option Bed Bath
 		label
+			p Select an excel ASF file
 			input(id='getASF', type='file')
 		label
+			p Select folder of PS data
 			input(id='getPSDData', type='file', webkitdirectory)
+		label
+			p Optional: Set expected email width
+			input(id='getEmailWidth', type='number')
+		input(id='makeEmail', type='button', value='Make me an email')
