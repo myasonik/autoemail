@@ -63,7 +63,11 @@ var buildEmail = function buildEmail(sliceData, psData, psImgs, expectedWidth) {
 
 	jadeLocals.width = maxWidth;
 
-	return jade.renderFile(path.normalize('../emailTemplates/index.jade'), jadeLocals);
+
+	// WHY THIS THIS BROKEN?
+	// try go to absolue path (__dirname, emailtemplates, index.jade)
+	// return path.resolve('app/emailTemplates/index.jade');
+	return jade.renderFile(path.resolve('app/emailTemplates/index.jade'), jadeLocals);
 };
 
 module.exports = buildEmail;
