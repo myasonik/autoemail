@@ -24,3 +24,6 @@ block body
 			p Optional: Set expected email width
 			input(id='getEmailWidth', type='number')
 		input(id='makeEmail', type='button', value='Make me an email')
+
+	script.
+		process.on('uncaughtException', function(e) {});

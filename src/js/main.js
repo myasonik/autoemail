@@ -15,8 +15,6 @@ getASF.addEventListener('change', function() {
 	excel = this.value;
 	extension = path.extname(excel);
 
-	console.log(path.extname(excel));
-
 	if (extension === '.xls') excel = require('xlsjs').readFile(excel);
 	else if (extension === '.xlsx') excel = require('xlsx').readFile(excel);
 	else {
@@ -26,7 +24,12 @@ getASF.addEventListener('change', function() {
 
 	sheets = excel.Sheets;
 	asf = sheets.ASF;
-	sliceData = asf ? asf : sheets[0];
+	if (asf) sliceData = asf;
+	else {
+		asf = sheets['Bed Bath & Beyond'];
+		if (asf) sliceData = asf;
+		else sliceData = sheets[0];
+	}
 });
 
 getPSDData.addEventListener('change', function() {
@@ -53,11 +56,18 @@ getPSDData.addEventListener('change', function() {
 makeEmail.addEventListener('click', function() {
 	'use strict';
 	
-	var email, iFrame;
+	var body, email, iFrame, existingIFrame;
 
 	// if (sliceData && psData && psImgs.length > 0) {
+	if (true) {
+		body = document.body;
+		existingIFrame = body.querySelector('iframe');
+
 		rimraf.sync('email');
-		email = buildEmail(sliceData, psData, psImgs, document.querySelector('#getEmailWidth').value);
+		if (existingIFrame) body.removeChild(document.querySelector('iframe'));
+
+		// email = { contents: html page, width: int, height: int}
+		email = buildEmail(sliceData, psData, document.querySelector('#getEmailWidth').value);
 		fs.mkdirSync('email');
 		fs.mkdirSync(path.join('email', 'imgs'));
 		psImgs.forEach(function(el, i) {
@@ -66,12 +76,13 @@ makeEmail.addEventListener('click', function() {
 				fs.writeFileSync(path.join('email', 'imgs', file), fs.readFileSync(el));
 			}
 		});
-		fs.writeFileSync(path.normalize('email/index.html'), email);
-	// }
-	// else alert('Please add an ASF and exported PS data');
-
-	iFrame = document.createElement('iframe');
-	iFrame.nwdisable = true;
-	iFrame.src = path.join('../email', 'index.html');
-	document.body.appendChild(iFrame);
+		fs.writeFileSync(path.normalize('email/index.html'), email.contents);
+		iFrame = document.createElement('iframe');
+		iFrame.nwdisable = true;
+		iFrame.src = path.join('../email', 'index.html');
+		iFrame.width = email.width + 50;
+		iFrame.height = email.height + 50;
+		body.appendChild(iFrame);
+	}
+	else alert('Please add an ASF and exported PS data');
 });

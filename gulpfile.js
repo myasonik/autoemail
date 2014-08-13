@@ -85,7 +85,7 @@ gulp.task('watch', function() {
 	gulp.watch('src/scss/**/*.scss', ['sass']);
 	gulp.watch('src/imgs/**/*.{png,jpg,jpeg,gif,svg}', ['imgs']);
 	gulp.watch('src/js/**/*.js', ['js']);
-	gulp.watch('src/fonts/**/*.{eot,svg,ttf,woff}', ['copy']);
+	gulp.watch('src/emailTemplates/**/*.jade', ['copy']);
 });
 
 gulp.task('default', ['clean'], function() {
