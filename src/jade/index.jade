@@ -1,13 +1,19 @@
 extends templates/master.jade
 
 block body
-	pre.
+	h1: pre.
 		   _____            __           ___________                  __  __            ________  
 		  /  _  \   __ __ _/  |_   ____  \_   _____/  _____  _____   |__||  |    ___  __\_____  \ 
 		 /  /_\  \ |  |  \\   __\ /  _ \  |    __)_  /     \ \__  \  |  ||  |    \  \/ /  _(__  < 
 		/    |    \|  |  / |  |  (  <_> ) |        \|  | |  \ / __ \_|  ||  |__   \   /  /       \
 		\____|__  /|____/  |__|   \____/ /_______  /|__|_|  /(____  /|__||____/    \_/  /______  /
 		        \/                               \/       \/      \/                           \/ 
+	h2 Keywords in slice names
+	dl
+		dt spacer
+		dd Dont' use this. Photoshop uses 'spacer' in some of the automaticly generated slices.
+		dt replace
+		dd Replaces the slice with a 1x1 transparent gif stretched to fill the appropriate area.
 	form
 		label
 			p Choose an email template
@@ -22,7 +28,7 @@ block body
 			input(id='getPSDData', type='file', webkitdirectory)
 		label
 			p Optional: Set expected email width
-			input(id='getEmailWidth', type='number')
+			input(id='getEmailWidth', type='number', min='0')
 		input(id='makeEmail', type='button', value='Make me an email')
 
 	script.

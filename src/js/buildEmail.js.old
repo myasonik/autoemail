@@ -1,0 +1,216 @@
+var buildEmail = function buildEmail(sliceData, psData, expectedWidth) {
+	'use strict';
+
+	var cheerio = require('cheerio'),
+		jade = require('jade'),
+		path = require('path'),
+		lwip = require('lwip'),
+		$ = cheerio.load(psData),
+		jadeLocals = {
+			pretty: true,
+			width: 0,
+			rows: []
+		};
+	var email = {
+		height: 0
+	};
+
+	var spacerImg = function spacerImg($el) {
+		return $el.attr('src').indexOf('spacer.gif') !== -1;
+	};
+
+	var validCell = function validCell($img) {
+		return ($img.length === 1 && !spacerImg($img));
+	};
+
+	var getLeftPosition = function getLeftPosition($cells, currCell) {
+		var leftPosition = 0;
+
+		$cells.each(function(i, thisCell) {
+			var $thisImg = $(thisCell).children('img');
+
+			if (validCell($thisImg) && i < currCell) leftPosition += parseInt($thisImg.attr('width'));
+		});
+
+		return leftPosition;
+	};
+
+	var getRowHeight = function getRowHeight($cells) {
+		var rowHeight = 0;
+
+		$cells.each(function(i, thisCell) {
+			var $thisImg = $(thisCell).children('img');
+			var testHeight = parseInt($thisImg.attr('height'));
+
+			if (validCell($thisImg)) rowHeight = Math.min(rowHeight, testHeight);
+		})();
+
+		return rowHeight;
+	};
+
+	var queueTallImg = function queueTallImg(img, imgs) {
+		var qLength = imgs.length;
+
+		if (qLength === 0) {
+			imgs.push(img);
+		} else {
+			imgs.forEach(function(el, i) {
+				if ((img.leftPosition > el.leftPosition && img.leftPosition < imgs[i+1].leftPosition) ||
+					(i === 1 && img.leftPosition < el.leftPosition)) {
+					// if left position is greater than the left position of current item and less than the left position of the next item
+					// or if index is one and left position is less than current item 
+					// insert at index
+					imgs.splice(i, 0, img);
+				} else {
+					// you've reached the end of the queue
+					// or your left positions are equal in which case something else is wrong
+					imgs.push(img);
+				}
+			});
+		}
+
+		return imgs;
+	};
+
+	var parse = (function parse() {
+		var tallImgs = [];
+		var emailTable = [];
+
+		$('tr').each(function(i, thisRow) {
+			var $thisRow = $(thisRow);
+			var $thisRowCells = $thisRow.children('td');
+			var rowHeight = getRowHeight($thisRowCells);
+			var row = [];
+
+			if (rowHeight !== 0) {
+				$thisRowCells.each(function(j, thisCell) {
+					var $thisCell = $(thisCell);
+					var $thisImg = $thisCell.children('img');
+					var tallImg;
+
+					if (validCell($thisImg)) {
+						// if the image exists and is not a photoshop spacer image
+						if (tallImgs.length > 0) {
+
+						} else {
+							if ($thisCell.attr('rowspan')) {
+
+							} else {
+								row.push({
+
+									type: 'img'
+								});
+							}
+						}
+
+
+						// tallImg = {};
+						// $thisImg.width = parseInt($thisImg.attr('width'));
+
+						// if (tallImgs.length > 0) {
+						// 	// insert row spanning images from above in this row
+
+						// 	// TODO/REMEMBER: What if multiple row spanning images in a row?
+
+						// 	tallImgs.forEach(function(el, i) {
+						// 		if ($thisImg.width <= el.leftPosition) {
+						// 			// if this image's width is less than the left edge position of row spanning image, insert the new image first
+									
+						// 			// TODO: Crop image
+						// 		}
+						// 	});
+						// }
+
+						// tallImg.rowspan = $thisCell.attr('rowspan');
+						// if (!!tallImg.rowspan) {
+						// 	// if the cell stretches multiple rows
+						// 	tallImg.leftPosition = (j > 0) ? getLeftPosition($thisRowCells, j) : 0;
+						// 	tallImg.img = $thisImg;
+
+						// 	tallImgs = queueTallImg(tallImg, tallImgs); // queue keeps tall images in order
+						// } else {
+						// 	// if the cell is one row tall
+						// }
+					}
+				});
+				if (row.length) emailTable.push(row);
+			}
+		});
+
+		return emailTable;
+	}());
+
+
+	// // Sets jadeLocals.width, email.height and return data without spacer garbage and row heights
+	// var cleanRows = (function() {
+	// 	var rows = [];
+
+	// 	$('tr').each(function(i, thisRow) {
+	// 		var $thisRow = $(thisRow);
+	// 		var row = [];
+	// 		var rowWidth = 0;
+	// 		var rowHeight = 0;
+	// 		var rowMinHeight = 0;
+
+	// 		$thisRow.children('td').each(function(i, thisCell) {
+	// 			var $thisCell = $(thisCell);
+	// 			var $thisImg = $thisCell.children('img');
+
+	// 			if ($thisImg.length === 1 && !spacerImg($thisImg)) {
+	// 				// if the image exists and it's not a spacer image
+	// 				row.push($thisCell);
+	// 				if (rowHeight === 0 && !$thisRow.attr('rowspan')) {
+	// 					rowHeight = parseInt($thisImg.attr('height'));
+	// 				}
+	// 				rowWidth += parseInt($thisImg.attr('width'));
+	// 			}
+	// 		});
+
+	// 		jadeLocals.width = Math.max(jadeLocals.width, rowWidth);
+	// 		email.height += rowHeight;
+	// 		if (row.length > 0) {
+	// 			rows.push(row);
+	// 		}
+	// 	});
+
+	// 	return rows;
+	// }());
+
+	// if (expectedWidth && expectedWidth !== jadeLocals.width) alert('Expected email width did not match slices.');
+
+	// cleanRows.forEach(function(thisRow, i) {
+	// 	var emailRow = [];
+
+	// 	thisRow.forEach(function($thisCell, i) {
+	// 		var $thisCellImg = $thisCell.children('img');
+	// 		var emailCell = {};
+	// 		var imgSrc;
+
+	// 		if ($thisCellImg && !spacerImg($thisCellImg)) {
+	// 			if ($thisCellImg.attr('src').indexOf('replace') === -1) {
+	// 				imgSrc = 'imgs/' + $thisCellImg.attr('src');
+	// 			} else {
+	// 				imgSrc = 'imgs/spacer.gif';
+	// 			}
+	// 			emailCell.type = 'img';
+	// 			emailCell.src = imgSrc;
+	// 			emailCell.width = parseInt($thisCellImg.attr('width'));
+	// 			emailCell.height = parseInt($thisCellImg.attr('height'));
+
+	// 			// this will be roughly the max number of rows that I care about
+	// 			// (Object.keys(sliceData).length / 3) 
+
+	// 			emailRow.push(emailCell);
+	// 		}
+	// 	});
+
+	// 	jadeLocals.rows.push(emailRow);
+	// });
+
+	email.contents = jade.renderFile(path.resolve('app/emailTemplates/index.jade'), jadeLocals);
+	email.width = jadeLocals.width;
+
+	return email;
+};
+
+module.exports = buildEmail;
