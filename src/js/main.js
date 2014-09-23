@@ -44,8 +44,9 @@ getPSDData.addEventListener('change', function() {
 			if (path.extname(el) === '.html') psData = fs.readFileSync(path.join(dirname, el), 'utf8');
 			else {
 				extension = path.extname(el);
-				if (extension === '.jpg' || extension === '.gif') psImgs.push(path.join(dirname, el));
-				else  alert('File ' + el + ' not supported');
+				// if (extension === '.jpg' || extension === '.gif') psImgs.push(path.join(dirname, el));
+				// else  alert('File ' + el + ' not supported');
+				psImgs.push(path.join(dirname, el));
 			}
 		});
 	});
