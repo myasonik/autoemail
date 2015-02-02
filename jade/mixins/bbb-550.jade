@@ -1,0 +1,138 @@
+mixin addBBBheader-550-head(campaignLink)
+	+newRow
+		td(width="550", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="550", height="10", alt=" ")
+	+newRow
+		// table right above should have width="550" added
+		td(width="275", align="left", valign="bottom")
+			p(style="font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #273691;")
+				if block
+					block
+		td(width="275", align="right", valign="bottom")
+			p(style="font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: #273691;")
+				+a('http://view.ed4.net/v/_ECLIENTID__/_ECELLID__/_EOLISTID__/_EOCID__/MAILACTION=_MAILACTION__&FORMAT=H?' + campaignLink)(style="color: #273691;") View as web page
+	//- +newRow
+	//- 	td(width="190", height="103", valign="top")
+	//- 		table(width="190", cellpadding="0", cellspacing="0", border="0")
+	//- 			tr
+	//- 				td(width="190", height="29", valign="top")
+	//- 					img(src="imgs/spacer.gif", width="190", height="29", alt=" ")
+	//- 			tr
+	//- 				td(width="190", height="74", valign="top")
+	//- 					+a('http://www.bedbathandbeyond.com/store/?' + campaignLink)
+	//- 						img(src="imgs/logo.gif", width="190", height="74", alt="Bed Bath &amp; Beyond(R)" )
+	//- 	td(width="360", height="103", valign="top")
+	//- 		table(width="360", cellpadding="0", cellspacing="0", border="0")
+	//- 			tr
+	//- 				td(width="360", height="68", valign="top")
+	//- 					+a('http://www.bedbathandbeyond.com/store/static/ShippingPolicies?' + campaignLink)
+	//- 						img(src="imgs/ropus.gif", width="360", height="68", alt="FREE SHIPPING ALL ORDERS OVER $49 Get Details -OR- RESERVE ONLINE PICK UP IN STORE Learn More")
+	//- 			tr
+	//- 				td(width="360", height="35", valign="top")
+	//- 					table(cellpadding="0", cellspacing="0", border="0")
+	//- 						tr
+	//- 							td(width="120", height="35", valign="top")
+	//- 								+a('http://www.bedbathandbeyond.com/store/category/seasonal/10018/?' + campaignLink)
+	//- 									img(src="imgs/nav1.gif", width="120", height="35", alt="SEASONAL")
+	//- 							td(width="120", height="35", valign="top")
+	//- 								+a('http://www.bedbathandbeyond.com/store/category/kitchen-small-appliances/10002/?' + campaignLink)
+	//- 									img(src="imgs/nav2.gif", width="120", height="35", alt="KITCHEN")
+	//- 							td(width="120", height="35", valign="top")
+	//- 								+a('http://www.bedbathandbeyond.com/store/category/clearance/10009/?' + campaignLink)
+	//- 									img(src="imgs/nav3.gif", width="120", height="35", alt="CLEARANCE")
+
+mixin addBBBheader-550-foot(campaignLink)
+	//- +newRow
+	//- 	td(width="550", height="59", valign="top")
+	//- 		img(src="imgs/disclaimer.gif", width="550", height="59", alt="All products are available online and may be available in select Bed Bath & Beyond(R) stores. Products may be ordered in any of our stores; shipping fees apply. Prices only apply in contiguous United States.")
+	+newRow
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="530", height="128", valign="top")
+			img(src="imgs/spacer.gif", width="530", height="128", alt="PROMO 1")
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+	+newRow
+		td(width="550", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="550", height="10", alt=" ")
+	+newRow
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="260", height="83", valign="top")
+			img(src="imgs/spacer.gif", width="260", height="83", alt="PROMO 2")
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="260", height="83", valign="top")
+			img(src="imgs/spacer.gif", width="260", height="83", alt="PROMO 3")
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+	+newRow
+		td(width="550", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="550", height="10", alt=" ")
+	+newRow
+		td(width="95", height="30", valign="top")
+			+a('https://www.bedbathandbeyond.com/store/static/GiftCardHomePage?' + campaignLink)
+				img(src="imgs/activity1.gif", width="95", height="30", alt="GIFT CARDS")
+		td(width="93", height="30", valign="top")
+			+a('https://www.bedbathandbeyond.com/store/account/Login?' + campaignLink)
+				img(src="imgs/activity2.gif", width="93", height="30", alt="WISH LIST")
+		td(width="123", height="30", valign="top")
+			+a('https://www.bedbathandbeyond.com/store/account/TrackOrder?' + campaignLink)
+				img(src="imgs/activity3.gif", width="123", height="30", alt="TRACK ORDERS")
+		td(width="116", height="30", valign="top")
+			+a('https://www.bedbathandbeyond.com/store/account/Login?' + campaignLink)
+				img(src="imgs/activity4.gif", width="116", height="30", alt="MY ACCOUNT")
+		td(width="123", height="30", valign="top")
+			+a('https://app.bedbathandbeyond.com/prefs/pref.cfm?' + campaignLink)
+				img(src="imgs/activity5.gif", width="123", height="30", alt="MY PREFERENCES")
+	+newRow
+		td(width="550", height="15", valign="top")
+			img(src="imgs/spacer.gif", width="550", height="15", alt=" ")
+	+newRow
+		td(width="10", height="25", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="25", alt=" ")
+		td(width="155", height="25", valign="top")
+			img(src="imgs/dont-miss-out.gif", width="155", height="25", alt="Don't miss out!")
+		td(width="10", height="25", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="25", alt=" ")
+	+newRow
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="530", align="left", valign="top")
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 14px;") Please verify or update your email and home addresses<br />
+				| so you'll be sure to get future updates.
+				a(href= 'http://app.bedbathandbeyond.com/store_map/map.cfm?' + campaignLink style="color: #273691;" target="_blank") Click here to update
+				| <br /><br />
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+	+newRow
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="530", align="left", valign="top")
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 14px;") <strong>Your Store Locator:</strong><br />
+				| 1717 West Lane Avenue, Upper Arlington, OH 
+				a(href= 'EEMS to add link?' + campaignLink style="color: #273691;" target="_blank") view map
+				| <br /><br />
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+	+newRow
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+		td(width="530", align="left", valign="top")
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 14px;") This promotional email was sent to you by Bed Bath &amp; Beyond&reg;.<br /><br />
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 14px;") Please add <a href="maiilto:bedbathandbeyond@bedbathandbeyond.com" target="_blank" style="color: #273691;">bedbathandbeyond@bedbathandbeyond.com</a> to your address book.<br /><br />
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 14px;") If you received this email from a friend and would like to join our email list, 
+				a(href= 'https://app.bedbathandbeyond.com/prefs/pref.cfm?' + campaignLink style="color: #273691;" target="_blank") subscribe here.<br />
+				| If you prefer not to receive promotional email messages from us, 
+				a(href= 'http://app.bedbathandbeyond.com/unsub/unsub.cfm?' + campaignLink style="color: #273691;" target="_blank") unsubscribe here.<br /><br />
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 14px;")
+				a(href= 'http://www.bedbathandbeyond.com/policyPrivacy.asp?' + campaignLink style="color: #273691;" target="_blank") Privacy Policy &mdash; Your Privacy Rights<br /><br />
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 12px;") Please do not reply to this email &mdash; 
+				a(href= 'https://www.bedbathandbeyond.com/contactUs.asp?' + campaignLink style="color: #273691;" target="_blank") contact us here.<br /><br />
+			p(style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 12px;") &copy; 2014 Bed Bath &amp; Beyond Inc. and its subsidiaries. All rights reserved.
+				| Corporate Headquarters - 650 Liberty Avenue, Union, New Jersey 07083
+		td(width="10", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="10", height="10", alt=" ")
+	+newRow
+		td(width="550", height="10", valign="top")
+			img(src="imgs/spacer.gif", width="550", height="10", alt=" ")
