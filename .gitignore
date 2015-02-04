@@ -1,6 +1,10 @@
 bower_components
 node_modules
 
+build
+data
+output
+
 .DS_Store
 .sass-cache
 .svn
