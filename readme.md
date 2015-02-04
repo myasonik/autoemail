@@ -29,16 +29,14 @@ AutoEmail is a tool designed to speed up the development of HTML email. It takes
     * _Search Google for older versions OS X._
 
 ### Install Node.js dependencies
-
-1. Navigate to installation location
-
-	```
+ 
+1. Navigate to installation location: 
+    ```
     cd /path/to/autoemail/
     ```
 
-2. Install depencies
-
-	```
+2. Install depencies: 
+    ```
     npm install
     ```
 
@@ -166,9 +164,10 @@ Note: _Unfortunately, you will have to add style info yourself, but the cell for
         * As the comment on the page says, the parameter for the add header function is the campaign monitoring suffix, don't include the question mark
         * Under and indented in function call, there is a pipe symbol. After it goes the plain text that is in the upper left hand corner of most emails. If there is nothing there, just don't fill out this line. If you did put something there, make sure there is a space at the end because directly following will be your shop now link.
         * Under that at the same indentation level is a function call that puts in a link. This is usually says something like "Shop now!" It should look something like this:
-```
-+a('http://bbb.com/baths?campain-monitoring-code') Shop now
-```
+            ```
+            +a('http://bbb.com/baths?campain-monitoring-code') Shop now
+            
+            ```
             * Note: this link needs to be fully-qualified, including the campaign monitoring suffix.
 
 
