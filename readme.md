@@ -4,7 +4,7 @@
 
 AutoEmail is a tool designed to speed up the development of HTML email. It takes a sliced Photoshop document, checks it against an Excel document and generates nicely formatted HTML and plain text that will work well with most HTML email systems.
 
-* [Installation][anchor-installation]
+* [Installation](Installation)
 * [Settings][]
 	* [Excel Document][]
 	* [Photoshop Document][]
@@ -14,7 +14,7 @@ AutoEmail is a tool designed to speed up the development of HTML email. It takes
 
 ***
 
-## Installation [anchor-installation]
+## Installation
 
 ### Clone the project to your development environment: 
 
