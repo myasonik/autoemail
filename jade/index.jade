@@ -6,7 +6,7 @@ block title
 block content
 	//- add the campain monitoring link suffix as the argument in the addBBBheader-550 function (don't include the question mark)
 	//- only leave this function in if you're doing a 550 wide BBB email, otherwise delete or comment it out.
-	+addBBBheader-550('')
+	+addBBBheader-550-head('')
 		| Email title. 
 		+a('')(style="color:#273691;") Shop now!
 	+build

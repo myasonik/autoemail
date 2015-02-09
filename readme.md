@@ -61,7 +61,7 @@ AutoEmail requires that the email data be stored in an Excel document, formatted
 * **Column 3: Links** The third column is for links (if applicable). Leaving this field blank or using the text "no link" will prevent AutoEmail from wrapping the slice in a link.
 
 
-#### Excel Export Settings
+#### Excel Export Settings if older than 2013
 
 1. From the **File** menu, select **Save as Web Page**
     * Select **Sheet** radio button
@@ -76,6 +76,21 @@ AutoEmail requires that the email data be stored in an Excel document, formatted
 4. Name this document **2excel.htm**
 5. Save everything into a **data** folder in the root folder of this project
 
+#### Excel Export Settings if newer than 2013
+
+1. From the **File** menu, select **Export** then **Change File Type** then **Save as Another File Type**.
+
+2. The click **Tools** and select **Web Options**.
+
+3. Select the **Encoding** tab
+    * In the "Save this document as:" dropdown, select **Unicode (UTF-8)**.
+    * Check **Always save Web pages in the default encoding.** 
+    (This will allow you to skip this step in the future.)
+
+4. Select **Web Page** from the "Save as type" dropdown.
+    * Select **Republish: Sheet** radio button
+
+5. Name this document **2excel.htm**, hit save then publish.
 
 ***
 
