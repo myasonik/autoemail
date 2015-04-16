@@ -17,13 +17,13 @@ mixin tr
 
 mixin td(el)
 	- if (el.type === 'text')
-		td(align="left",
+		td(style="border-collapse: collapse;" align="left",
 			valign!= attributes.valign ? attributes.valign : "bottom",
 			bgcolor!= el.bgcolor)
 			if block
 				block
 	-else 
-		td(width= el.width, height= el.height, 
+		td(style="border-collapse: collapse;" width= el.width, height= el.height, 
 			valign!= attributes.valign ? attributes.valign : "top",
 			bgcolor!= el.bgcolor)
 			if block
@@ -36,4 +36,4 @@ mixin a(link)
 			block
 
 mixin img(img)
-	img(src= img.src, width= img.width, height= img.height, alt= img.alt)
+	img(src= img.src, width= img.width, height= img.height, alt= img.alt style="border: none;")
